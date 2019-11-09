@@ -1,3 +1,4 @@
 #!/bin/bash
 #	to open the sslocal for vpn
-nohup sslocal -c ./sslocal1.json -d start &
+nohup /usr/bin/sslocal -c ./shadowsocks_local.json  -d start &
+#nohup  sslocal -c ./shadowsocks_local.json  -d start &
