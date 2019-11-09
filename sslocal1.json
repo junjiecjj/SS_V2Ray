@@ -1,9 +1,9 @@
 {
-	"server":"45.77.124.12",
-	"server_port":13519,
+	"server":"服务器的IP",
+	"server_port":端口号, //必须和服务端一样
 	"local_address":"127.0.0.1",
 	"local_port":1080,
-	"password":"@chen1013",
+	"password":"密码", //必须和服务端一样
 	"timeout":300,
 	"method":"aes-256-cfb"
 }
