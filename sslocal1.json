@@ -1,8 +1,8 @@
 {
 	"server":"服务器的IP",
 	"server_port":端口号, //必须和服务端一样
-	"local_address":"127.0.0.1",
-	"local_port":1080,
+	"local_address":"127.0.0.1",  //浏览器中的必须和这个一样
+	"local_port":1080,    //可以和服务器中的不一样，因为不是一个东西
 	"password":"密码", //必须和服务端一样
 	"timeout":300,
 	"method":"aes-256-cfb"
