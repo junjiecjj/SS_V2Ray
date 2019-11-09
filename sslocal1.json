@@ -1,0 +1,9 @@
+{
+	"server":"45.77.124.12",
+	"server_port":13519,
+	"local_address":"127.0.0.1",
+	"local_port":1080,
+	"password":"@chen1013",
+	"timeout":300,
+	"method":"aes-256-cfb"
+}
