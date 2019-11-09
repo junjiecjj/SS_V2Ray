@@ -5,6 +5,10 @@
 
 shadowsocks：
 
+其中shadowsocks_server.json是服务端的文件，在/etc/shadowsocks.json下
+ss_local_start1.sh和sslocal1.json是客户端的文件，放在同一个文件下
+
+
     历史命令，服务器端安装shadowsocks:
    $: wget  --no-check-certificate -O  shadowsocks.sh   https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh
    $:  chmod +x shadowsocks.sh
@@ -41,6 +45,8 @@ shadowsocks：
 
 
 ################################################v2ray开始###################################################
+
+
 服务器端安装并启动v2ray:
     方法一：
         首先校准时间
