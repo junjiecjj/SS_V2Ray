@@ -1,0 +1,93 @@
+{
+    "log": 
+    {
+        "loglevel": "warning",
+        "access": "",
+        "error": ""
+    },
+    
+    
+    "inbounds":
+    [       //在客户端，inbound是接收来自浏览器的数据
+        {
+            "port": 1995, // 监听端口,需要与浏览器一致
+            "listen":"127.0.0.1",
+            "protocol": "socks", // 入口协议为 SOCKS 5，需要与浏览器一致
+            "sniffing":
+            {
+                "enabled": true,
+                "destOverride": ["http", "tls"]
+            },
+            "settings":
+            {
+                "auth": "noauth"  //socks的认证设置，noauth 代表不认证，由于 socks 通常在客户端使用，所以这里不认证
+            }
+        }
+    ],
+    
+    "outbounds":
+    [         //在客户端outbounds是将客户端的inbound的数据传到服务器端的inbound
+        {
+            "protocol": "vmess", // 出口协议
+            "settings":
+            {
+                "vnext":
+                [
+                    {
+                        "address": "45.77.124.12", // 服务器地址，请修改为你自己的服务器 IP 或域名
+                        "port": 11269,  // 服务器端口
+                        "users":
+                        [
+                            {
+                                "id": "6519a9fd-951b-496b-a2fc-5f8913fb7965",  // 用户 ID，必须与服务器端配置相同
+                                "alterId": 64 // 此处的值也应当与服务器相同
+                            }
+                        ]
+                    }
+                ]
+            },
+            
+            "streamSettings":
+            {
+                "network": "mkcp",
+                "kcpSettings":
+                {
+                    "uplinkCapacity": 5,
+                    "downlinkCapacity": 100,
+                    "congestion": true,
+                    "header":
+                    {
+                        "type": "none"
+                    }
+                }
+            }
+        },
+        {
+            "protocol": "freedom",
+            "settings": {},
+            "tag": "direct" //如果要使用路由，这个 tag 是一定要有的，在这里 direct 就是 freedom 的一个标号，在路由中说 direct V2Ray 就知道是这里的 freedom 了
+        }    
+    ],
+    
+    "routing":
+    {
+        "domainStrategy": "IPOnDemand",
+        "rules":
+        [
+            {
+                "type": "field",
+                "outboundTag": "direct",
+                "domain": ["geosite:cn"] // 中国大陆主流网站的域名
+            },
+            {
+                "type": "field",
+                "outboundTag": "direct",
+                "ip":
+                [
+                    "geoip:cn", // 中国大陆的 IP
+                    "geoip:private" // 私有地址 IP，如路由器等
+                ]
+            }
+        ]
+    }
+}
