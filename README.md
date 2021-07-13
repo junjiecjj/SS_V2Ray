@@ -1,4 +1,4 @@
-# 为服务端配置vim
+# 1. 为服务端配置vim
 
 + git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
@@ -6,43 +6,47 @@
 
 接下来分别阐述shadowsocks和V2ray搭建科学上网的方法：
 
-#  shadowsocks服务端和客户端配置方法
+#  2. shadowsocks服务端和客户端配置方法
 
-shadowsocks：
+
 
 	其中shadowsocks_server.json是服务端的文件，在/etc/shadowsocks.json下
     
 	ss_local_start1.sh和shadowsocks_local.json是客户端的文件，放在同一个文件下
 
------------------------------服务端--------------------------------------------
+##  2.1 -----------------------------服务端--------------------------------------------
 
-    历史命令，服务器端安装shadowsocks:
+    ### 服务器端安装shadowsocks:
     
-	方法一：
-    
-    	34  $: wget --no-check-certificate -O shadowsocks.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh
+	+ 方法一：
+    	```bash
+	  $: wget --no-check-certificate -O shadowsocks.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh
         
-    	35  $: chmod +x shadowsocks.sh
+    	  $: chmod +x shadowsocks.sh
         
-    	41  $: sudo ./shadowsocks.sh 2>&1 | tee shadowsocks.log
+    	  $: sudo ./shadowsocks.sh 2>&1 | tee shadowsocks.log
         
-    	43  $: sudo ssserver -c /etc/shadowsocks.json -d start
+    	  $: sudo ssserver -c /etc/shadowsocks.json -d start
+	  ```
+
         
 	方法二：
+	```bash
+		$: sudo apt-get python3-pip
+		$: sudo pip3 install shadowsocks
+	```
     
-	$: sudo apt-get python3-pip
-    
-	$: sudo pip3 install shadowsocks
 
-    服务器端启动：
+
+    ### 服务器端启动：
     
     	sudo ssserver -c /etc/shadowsocks.json -d start
 
-    服务器端停止：
+    ### 服务器端停止：
     
     	sudo ssserver -c /etc/shadowsocks.json -d stop
 
-    服务端其他命令：
+    ### 服务端其他命令：
     
 	卸载：
     
@@ -60,13 +64,13 @@ shadowsocks：
 
      服务端的shadowsocks配置文件在:/etc/shadowsocks.json下
 
------------------------------客户端--------------------------------
+## 2.2 -----------------------------客户端--------------------------------
 
-    客户端安装shadowsocks:
+    ### 客户端安装shadowsocks:
     
 	$: apt-get install shadowsocks
     
-    客户端启动shadowsocks:
+    ### 客户端启动shadowsocks:
     
     	客户端再重新启动shadowsocks之前得把之前的杀掉
         
@@ -76,7 +80,7 @@ shadowsocks：
         
     	$:bash ss_loacl_start1.sh
 
-    客户端的shadowsocks配置文件在：
+    ### 客户端的shadowsocks配置文件在：
     
 		/文档/翻墙/陈俊杰/ss_local_start1.sh下
         
@@ -96,14 +100,14 @@ shadowsocks：
     重启(修改配置要重启才生效)：sslocal -c /home/xx/Software/ShadowsocksConfig/shadowsocks.json -d restart
     
 
-    客户端开机自启
+    ### 客户端开机自启
     
 	以下使用Systemd来实现shadowsocks开机自启。
 
 	sudo vim /etc/systemd/system/shadowsocks.service
     
 	在里面填写如下内容：
-
+```bash
 	[Unit]
     
 	Description=Shadowsocks Client Service
@@ -121,6 +125,8 @@ shadowsocks：
 	[Install]
     
 	WantedBy=multi-user.target
+```
+
 
 	把~/文档/翻墙/陈俊杰/shadowsocks_local.json修改为你的shadowsocks.json路径，如：/etc/shadowsocks.json
 
@@ -136,8 +142,8 @@ shadowsocks：
 
 	现在你可以马上重启试试，或先在后台启动，等下次重启再看看！
 
-------------------------------------------------------------------------------
-	解决shadowsocks不能访问谷歌学术的：
+
+	### 解决shadowsocks不能访问谷歌学术的：
 
 		首先，找到最新的 Google IPv6 地址，可以在这里查看：https://raw.githubusercontent.com/lennylxx/ipv6-hosts/master/hosts
 
@@ -161,17 +167,17 @@ shadowsocks：
         
 		之后，就能够正常访问谷歌学术的网站了。
 
+-----
 
-
-#  v2ray安装及其配置###############################
+#  v2ray安装及其配置 
 
 	其中v2ray_config_server.json是服务端的配置文件，在服务端的/etc/v2ray/config.json下
     
 	其中v2ray_config_local.json是服务端的配置文件，在客户端/etc/v2ray/config.json下
 
-	服务器端安装并启动v2ray:
+	## 服务器端安装并启动v2ray:
     
-    		方法一：
+    		### 方法一：
             
         	首先校准时间:
             
@@ -181,7 +187,7 @@ shadowsocks：
             
         	安装完成
 
-    		方法二：
+    		### 方法二：
             
         	$:bash <(curl -L -s https://install.direct/go.sh)
     	
@@ -217,7 +223,7 @@ shadowsocks：
             
     		2、/etc/init.d/v2ray:SysV
 
-	客户端：
+	## 客户端：
     
     		客户端安装v2ray:和服务端一样
             
@@ -225,4 +231,5 @@ shadowsocks：
 
 	客户端和服务端的v2ray的配置文件都在：/etc/v2ray/config.json下
     
-###########v2ray配置结束########################################################
+  v2ray配置结束 
+------
