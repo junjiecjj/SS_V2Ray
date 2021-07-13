@@ -1,9 +1,12 @@
+# 为服务端配置vim
 
-$: git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
++ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-$: wget https://raw.githubusercontent.com/junjiecjj/configure_file/master/vimrc  -O ~/.vimrc
++ wget https://raw.githubusercontent.com/junjiecjj/configure_file/master/vimrc  -O ~/.vimrc
 
-#######################分割线##########################################
+接下来分别阐述shadowsocks和V2ray搭建科学上网的方法：
+
+#  shadowsocks服务端和客户端配置方法
 
 shadowsocks：
 
@@ -158,9 +161,9 @@ shadowsocks：
         
 		之后，就能够正常访问谷歌学术的网站了。
 
-#######################分割线##########################################
 
-########################v2ray安装及其配置###############################
+
+#  v2ray安装及其配置###############################
 
 	其中v2ray_config_server.json是服务端的配置文件，在服务端的/etc/v2ray/config.json下
     
